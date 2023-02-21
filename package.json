@@ -1,0 +1,27 @@
+{
+  "name": "praise-reports",
+  "version": "0.0.1",
+  "description": "Praise Reports",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "packageManager": "yarn@3.3.1",
+  "dependencies": {
+    "@duckdb/duckdb-wasm": "^1.20.0",
+    "@endo/static-module-record": "^0.7.16",
+    "duckdb": "^0.6.1",
+    "ses": "^0.18.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.32.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^29.4.3",
+    "prettier": "^2.8.3"
+  },
+  "jest": {
+    "transform": {}
+  }
+}
