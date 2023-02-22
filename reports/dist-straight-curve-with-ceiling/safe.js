@@ -35,9 +35,9 @@ export default class Report extends BaseReport {
       return;
     }
 
-    const { totalScore, periodBudget } = super.distributionStats(rows);
-
     return rows;
+
+    // const { totalScore, periodBudget } = super.distributionStats(rows);
 
     // const praiseDistribution = rows.map((receiver) => ({
     //   token_type: tokenType,
