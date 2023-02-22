@@ -126,6 +126,6 @@ export default class BaseReport {
       rows = this.filterReceivers(rows);
       return rows;
     }
-    return [];
+    return;
   }
 }
