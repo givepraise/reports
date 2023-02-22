@@ -31,6 +31,10 @@ export default class Report extends BaseReport {
 
     let rows = await super.run();
 
+    if (!Array.isArray(rows) || rows.length === 0) {
+      return;
+    }
+
     const { totalScore, periodBudget } = this.distributionStats(rows);
 
     const praiseDistribution = rows.map((receiver) => ({
