@@ -109,7 +109,7 @@ export default class BaseReport {
       ANY_VALUE(users.username) as username, 
       ANY_VALUE(users.identityEthAddress) as identity_eth_address, 
       ANY_VALUE(users.rewardsEthAddress) as rewards_eth_address, 
-      count(praises) AS praise_count, 
+      CAST(count(praises) AS INTEGER) AS praise_count,
       round(sum(praises.score), 2) AS score 
       FROM praises 
       LEFT JOIN useraccounts ON praises.receiver = useraccounts._id
