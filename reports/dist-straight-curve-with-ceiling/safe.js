@@ -35,7 +35,7 @@ export default class Report extends BaseReport {
       return;
     }
 
-    const { totalScore, periodBudget } = this.distributionStats(rows);
+    const { totalScore, periodBudget } = super.distributionStats(rows);
 
     return rows;
 
