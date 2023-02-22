@@ -29,15 +29,13 @@ function importModule(moduleSpecifier) {
  */
 function resolveModule(moduleSpecifier, moduleReferrer) {
   const folderName = moduleReferrer.split("/")[0];
-  const fileName = moduleSpecifier.split("/")[1];
-  return `${folderName}/${fileName}`;
+  return `${folderName}/${moduleSpecifier}`;
 }
 
 export function createCompartment() {
   const compartment = new Compartment(
     {
       Math,
-      log: harden(log),
     },
     {},
     {

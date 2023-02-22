@@ -1,15 +1,15 @@
-export default class BaseReport {
+import BaseReport from "../base-report";
+export default class DistReport extends BaseReport {
   /**
    * Validate that any required config parameters are present.
    */
   constructor(config, db) {
+    super(config, db);
     if (!config.cutoff || !config.ceiling) {
       throw new Error(
         "Missing cutoff or ceiling in config. Please provide both."
       );
     }
-    this.config = config;
-    this.db = db;
   }
 
   /**
@@ -27,10 +27,12 @@ export default class BaseReport {
   filterNoRewardsAddress(rows) {
     const noRewards = rows.filter((row) => !row.rewards_eth_address);
     if (Array.isArray(noRewards) && noRewards.length > 0) {
-      log(`\nFiltering ${noRewards.length} rows with no rewardsEthAddress:`);
-      log(`\nuseraccount, score`);
+      this.log(
+        `\nFiltering ${noRewards.length} rows with no rewardsEthAddress:`
+      );
+      this.log(`\nuseraccount, score`);
       noRewards.forEach((row) => {
-        log(`${row.useraccount_name}, ${row.score}`);
+        this.log(`${row.useraccount_name}, ${row.score}`);
       });
     }
     return rows.filter((row) => row.rewards_eth_address);
@@ -44,12 +46,12 @@ export default class BaseReport {
   filterReceivers(rows) {
     const { filterReceivers } = this.config;
     if (Array.isArray(filterReceivers) && filterReceivers.length > 0) {
-      log(
+      this.log(
         `\nFiltering ${filterReceivers.length} receivers based on setting "filterReceivers":`
       );
-      log(`\nuseraccount, score`);
+      this.log(`\nuseraccount, score`);
       filterReceivers.forEach((filterReceiver) => {
-        log(
+        this.log(
           `${
             rows.find((row) => row.identity_eth_address === filterReceiver)
               .useraccount_name
@@ -76,19 +78,19 @@ export default class BaseReport {
       (acc, row) => acc + row.praise_count,
       0
     );
-    log(`\nTotal number of praises: ${totalNumberOfPraises}`);
+    this.log(`\nTotal number of praises: ${totalNumberOfPraises}`);
 
     const totalScore = rows.reduce((acc, row) => acc + row.score, 0).toFixed(2);
-    log(`Total score: ${totalScore}`);
+    this.log(`Total score: ${totalScore}`);
 
     // Total number of receivers
-    log(`Total number of receivers: ${rows.length}`);
+    this.log(`Total number of receivers: ${rows.length}`);
 
     const periodBudget =
       totalNumberOfPraises > cutoff
         ? ceiling
         : (totalNumberOfPraises / cutoff) * ceiling;
-    log(`Period budget: ${periodBudget}`);
+    this.log(`Period budget: ${periodBudget}`);
 
     return { totalNumberOfPraises, totalScore, periodBudget };
   }

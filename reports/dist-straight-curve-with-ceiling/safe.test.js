@@ -1,9 +1,6 @@
 import Report from "./safe.js";
 import { initDuckDb } from "../../src/duckdb.js";
 
-// Silence console.log
-global.log = () => undefined;
-
 describe("dist-straight-curve-with-ceiling", () => {
   let db;
   let report;
@@ -28,9 +25,9 @@ describe("dist-straight-curve-with-ceiling", () => {
   });
   test("run should succeed and return expected results", async () => {
     const result = await report.run();
-    expect(result).toBeDefined();
-    expect(result.length).toEqual(67);
-    expect(result[0]).toEqual({
+    expect(result.rows).toBeDefined();
+    expect(result.rows.length).toEqual(67);
+    expect(result.rows[0]).toEqual({
       amount: 0.6440222324839759,
       id: "",
       receiver: "0x320c338BCF70bAAaE26e96201C33B48105Bc62C2",

@@ -1,6 +1,6 @@
-import BaseReport from "./base";
+import DistReport from "./dist-report";
 
-export default class Report extends BaseReport {
+export default class Report extends DistReport {
   manifest = {
     name: "dist-straight-curve-with-ceiling",
     displayName: "Period Summary",
@@ -42,8 +42,8 @@ export default class Report extends BaseReport {
         id: "",
       }));
 
-      return praiseDistribution;
+      return this.finish(praiseDistribution);
     }
-    return [];
+    return this.finish([]);
   }
 }

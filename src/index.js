@@ -2,7 +2,6 @@ import "ses";
 
 import { createCompartment } from "./ses.js";
 import { initDuckDb } from "./duckdb.js";
-import { log } from "./report.js";
 
 lockdown();
 
@@ -23,13 +22,13 @@ async function run() {
   const report = new namespace.default(config, db);
 
   try {
-    log(`\n👍 Running report: ${report.manifest.name}\n`);
-    log(`Config: ${JSON.stringify(config, null, 2)}\n`);
+    console.log(`\n👍 Running report: ${report.manifest.name}\n`);
+    console.log(`Config: ${JSON.stringify(config, null, 2)}\n`);
 
     const response = await report.run();
 
-    log(`✅ Success!\n`);
-    log(`Returned rows: ${response.length}\n`);
+    console.log(`✅ Success!\n`);
+    console.log(`Returned rows: ${response.length}\n`);
 
     console.log(`${JSON.stringify(response, null, 2)}\n`);
   } catch (e) {

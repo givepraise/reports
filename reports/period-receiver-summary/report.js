@@ -1,4 +1,6 @@
-export default class Report {
+import BaseReport from "../base-report";
+
+export default class Report extends BaseReport {
   manifest = {
     name: "period-receiver-summary",
     displayName: "Period Summary",
@@ -15,12 +17,7 @@ export default class Report {
     configuration: {},
   };
 
-  constructor(config, db) {
-    this.config = config;
-    this.db = db;
-  }
-
-  run() {
+  async run() {
     const { startDate, endDate } = this.config;
 
     const where =
@@ -43,6 +40,7 @@ export default class Report {
       ORDER BY score DESC
     ;`;
 
-    return this.db.query(sql);
+    const rows = await this.db.query(sql);
+    return this.finish(rows);
   }
 }

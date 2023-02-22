@@ -1,4 +1,6 @@
-export default class Report {
+import BaseReport from "../base-report";
+
+export default class Report extends BaseReport {
   manifest = {
     name: "period-stats",
     displayName: "Period Stats",
@@ -14,12 +16,7 @@ export default class Report {
     configuration: {},
   };
 
-  constructor(config, db) {
-    this.config = config;
-    this.db = db;
-  }
-
-  run() {
+  async run() {
     const { startDate, endDate } = this.config;
 
     const sql = `SELECT 
@@ -29,6 +26,7 @@ export default class Report {
       WHERE praises.createdAt > '${startDate}' AND praises.createdAt <= '${endDate}'
     ;`;
 
-    return this.db.query(sql);
+    const rows = await this.db.query(sql);
+    return this.finish(rows);
   }
 }

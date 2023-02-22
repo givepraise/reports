@@ -1,9 +1,6 @@
 import Report from "./report.js";
 import { initDuckDb } from "../../src/duckdb.js";
 
-// Silence console.log
-global.log = () => undefined;
-
 describe("period-stats", () => {
   let db;
   let report;
@@ -25,8 +22,8 @@ describe("period-stats", () => {
   test("run should succeed and return expected results", async () => {
     const result = await report.run();
     expect(result).toBeDefined();
-    expect(result.length).toEqual(1);
-    expect(result[0].praise_count).toEqual(1643);
-    expect(result[0].score).toEqual(11480.63);
+    expect(result.rows.length).toEqual(1);
+    expect(result.rows[0].praise_count).toEqual(1643);
+    expect(result.rows[0].score).toEqual(11480.63);
   });
 });
