@@ -120,13 +120,9 @@ export default class BaseReport {
     ;`;
 
     let rows = await this.db.query(sql);
-    return rows;
 
-    if (Array.isArray(rows) && rows.length > 0) {
-      rows = this.filterNoRewardsAddress(rows);
-      rows = this.filterReceivers(rows);
-      return rows;
-    }
-    return;
+    rows = this.filterNoRewardsAddress(rows);
+    rows = this.filterReceivers(rows);
+    return rows;
   }
 }
