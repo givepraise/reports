@@ -31,20 +31,22 @@ export default class Report extends BaseReport {
 
     let rows = await super.run();
 
-    if (!Array.isArray(rows) || rows.length === 0) {
-      return;
-    }
+    return rows;
 
-    const { totalScore, periodBudget } = this.distributionStats(rows);
+    // if (!Array.isArray(rows) || rows.length === 0) {
+    //   return;
+    // }
 
-    const praiseDistribution = rows.map((receiver) => ({
-      token_type: tokenType,
-      token_address: tokenAddress,
-      receiver: receiver.rewards_eth_address,
-      amount: (receiver.score / totalScore) * periodBudget,
-      id: "",
-    }));
+    // const { totalScore, periodBudget } = this.distributionStats(rows);
 
-    return praiseDistribution;
+    // const praiseDistribution = rows.map((receiver) => ({
+    //   token_type: tokenType,
+    //   token_address: tokenAddress,
+    //   receiver: receiver.rewards_eth_address,
+    //   amount: (receiver.score / totalScore) * periodBudget,
+    //   id: "",
+    // }));
+
+    // return praiseDistribution;
   }
 }
