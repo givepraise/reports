@@ -31,11 +31,11 @@ export default class Report extends BaseReport {
 
     let rows = await super.run();
 
-    if (!Array.isArray(rows) || rows.length === 0) {
-      return;
-    }
-
     return rows;
+
+    // if (!Array.isArray(rows) || rows.length === 0) {
+    //   return;
+    // }
 
     // const { totalScore, periodBudget } = super.distributionStats(rows);
 
