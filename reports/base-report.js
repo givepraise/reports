@@ -1,5 +1,6 @@
 export default class BaseReport {
   logData = "";
+  devSupportAddress = "0x0B7246eF74Ca7b37Fdc3D15be4f0b49876622F95";
 
   constructor(config, db) {
     this.config = config;

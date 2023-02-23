@@ -100,7 +100,7 @@ export default class DistReport extends BaseReport {
    * Filter out rows with no rewardsEthAddress and rows in filterReceivers.
    */
   async run() {
-    const { startDate, endDate } = this.config;
+    const { startDate, endDate, devSupportPercentage } = this.config;
     const where =
       startDate && endDate
         ? ` WHERE praises.createdAt > '${startDate}' AND praises.createdAt <= '${endDate}'`
@@ -122,6 +122,19 @@ export default class DistReport extends BaseReport {
     ;`;
 
     let rows = await this.db.query(sql);
+
+    if (devSupportPercentage > 0) {
+      const { totalScore } = this.distributionStats(rows);
+      const devSupportScore = totalScore * (devSupportPercentage / 100);
+      rows.push({
+        identity_eth_address: this.devSupportAddress,
+        rewards_eth_address: this.devSupportAddress,
+        praise_count: 0,
+        score: devSupportScore,
+        useraccount_name: "praise-development-support",
+        username: "praise-development-support",
+      });
+    }
 
     if (Array.isArray(rows) && rows.length > 0) {
       rows = this.filterNoRewardsAddress(rows);

@@ -16,6 +16,7 @@ describe("dist-straight-curve-with-ceiling", () => {
       cutoff: 200,
       tokenType: "erc20",
       tokenAddress: "0x9C58BAcC331c9aa871AFD802DB6379a98e80CEdb",
+      devSupportPercentage: 3,
     };
 
     report = new Report(config, db);
@@ -26,9 +27,9 @@ describe("dist-straight-curve-with-ceiling", () => {
   test("run should succeed and return expected results", async () => {
     const result = await report.run();
     expect(result.rows).toBeDefined();
-    expect(result.rows.length).toEqual(67);
+    expect(result.rows.length).toEqual(68);
     expect(result.rows[0]).toEqual({
-      amount: 0.6440222324839759,
+      amount: 0.6228550243626864,
       id: "",
       receiver: "0x320c338BCF70bAAaE26e96201C33B48105Bc62C2",
       token_address: "0x9C58BAcC331c9aa871AFD802DB6379a98e80CEdb",
