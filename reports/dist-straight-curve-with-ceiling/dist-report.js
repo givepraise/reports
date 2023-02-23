@@ -5,9 +5,11 @@ export default class DistReport extends BaseReport {
    */
   constructor(config, db) {
     super(config, db);
-    if (!config.cutoff || !config.ceiling) {
+    config.cutoff = parseFloat(config.cutoff);
+    config.ceiling = parseFloat(config.ceiling);
+    if (isNaN(config.cutoff) || isNaN(config.ceiling)) {
       throw new Error(
-        "Missing cutoff or ceiling in config. Please provide both."
+        "Missing/invalid cutoff or ceiling in config. Please provide both."
       );
     }
   }
