@@ -78,19 +78,13 @@ export default class DistReport extends BaseReport {
       (acc, row) => acc + row.praise_count,
       0
     );
-    this.log(`\nTotal number of praises: ${totalNumberOfPraises}`);
 
     const totalScore = rows.reduce((acc, row) => acc + row.score, 0).toFixed(2);
-    this.log(`Total score: ${totalScore}`);
-
-    // Total number of receivers
-    this.log(`Total number of receivers: ${rows.length}`);
 
     const periodBudget =
       totalNumberOfPraises > cutoff
         ? ceiling
         : (totalNumberOfPraises / cutoff) * ceiling;
-    this.log(`Period budget: ${periodBudget}`);
 
     return { totalNumberOfPraises, totalScore, periodBudget };
   }
@@ -123,8 +117,10 @@ export default class DistReport extends BaseReport {
 
     let rows = await this.db.query(sql);
 
+    const { totalNumberOfPraises, totalScore, periodBudget } =
+      this.distributionStats(rows);
+
     if (devSupportPercentage > 0) {
-      const { totalScore } = this.distributionStats(rows);
       const devSupportScore = totalScore * (devSupportPercentage / 100);
       rows.push({
         identity_eth_address: this.devSupportAddress,
@@ -139,6 +135,10 @@ export default class DistReport extends BaseReport {
     if (Array.isArray(rows) && rows.length > 0) {
       rows = this.filterNoRewardsAddress(rows);
       rows = this.filterReceivers(rows);
+      this.log(`\nTotal number of praises: ${totalNumberOfPraises}`);
+      this.log(`Total score: ${totalScore}`);
+      this.log(`Total number of receivers: ${rows.length}`);
+      this.log(`Period budget: ${periodBudget}`);
       return rows;
     }
     return [];
