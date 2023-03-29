@@ -2,7 +2,7 @@
 
 Praise allows for creating custom reports. This repository is the official library of Praise reports.
 
-To use a report in the Praise dashboard ... TODO
+TODO: Describe how to use a report in the Praise dashboard.
 
 ## Run reports locally
 
@@ -88,13 +88,15 @@ Each report should accept a
 
 ### Db object
 
-The `db` object is a wrapper around the Praise database. It has the following methods:
+The `db` object is a wrapper around the Praise database. It provides a simple interface for querying the database.
 
 ```js
 db.query(sql);
 ```
 
-### Report manifest
+### Report manifest example
+
+````js
 
 Report settings are heavily inspired by VS Code's settings.
 See https://code.visualstudio.com/api/references/contribution-points#contributes.configuration
@@ -159,4 +161,78 @@ const manifest = {
     },
   },
 };
+````
+
+### Database schema
+
+```sql
+-- users.sql
+CREATE TABLE users (
+  _id VARCHAR PRIMARY KEY,
+  username VARCHAR,
+  identityEthAddress VARCHAR,
+  rewardsEthAddress VARCHAR,
+  roles VARCHAR,
+  createdAt TIMESTAMP,
+  updatedAt TIMESTAMP
+);
+
+-- user_accounts.sql
+CREATE TABLE useraccounts (
+  _id VARCHAR PRIMARY KEY,
+  accountId VARCHAR,
+  user VARCHAR,
+  name VARCHAR,
+  avatarId VARCHAR,
+  platform VARCHAR,
+  createdAt TIMESTAMP,
+  updatedAt TIMESTAMP,
+  FOREIGN KEY (user) REFERENCES users(_id)
+);
+
+-- praise.sql
+CREATE TABLE praises (
+  _id VARCHAR PRIMARY KEY,
+  giver VARCHAR,
+  forwarder VARCHAR,
+  receiver VARCHAR,
+  reason VARCHAR,
+  reasonRaw VARCHAR,
+  score DOUBLE,
+  sourceId VARCHAR,
+  sourceName VARCHAR,
+  createdAt TIMESTAMP,
+  updatedAt TIMESTAMP,
+  FOREIGN KEY (giver) REFERENCES users(_id),
+  FOREIGN KEY (receiver) REFERENCES users(_id)
+);
+
+-- quantifications.sql
+CREATE TABLE quantifications (
+  _id VARCHAR PRIMARY KEY,
+  praise VARCHAR,
+  quantifier VARCHAR,
+  score INTEGER,
+  scoreRealized DOUBLE,
+  dismissed BOOLEAN,
+  duplicatePraise VARCHAR,
+  createdAt TIMESTAMP,
+  updatedAt TIMESTAMP,
+  FOREIGN KEY (praise) REFERENCES praises(_id),
+  FOREIGN KEY (quantifier) REFERENCES users(_id)
+);
+
+-- periods.sql
+CREATE TABLE periods (
+  _id VARCHAR PRIMARY KEY,
+  name VARCHAR,
+  status VARCHAR,
+  endDate TIMESTAMP,
+  createdAt TIMESTAMP,
+  updatedAt TIMESTAMP
+);
 ```
+
+## License
+
+GNU General Public License v3.0 or later
