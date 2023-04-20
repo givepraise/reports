@@ -1,9 +1,6 @@
 import BaseReport from "../base-report";
-import Manifest from "./manifest";
 
 export default class Report extends BaseReport {
-  manifest = Manifest;
-
   async run() {
     const { startDate, endDate } = this.config;
 
