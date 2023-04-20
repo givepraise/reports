@@ -10,9 +10,8 @@
   },
   "packageManager": "yarn@3.3.1",
   "dependencies": {
-    "@duckdb/duckdb-wasm": "^1.20.0",
     "@endo/static-module-record": "^0.7.16",
-    "duckdb": "^0.6.1",
+    "duckdb": "^0.7.1",
     "ses": "^0.18.1"
   },
   "devDependencies": {
