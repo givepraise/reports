@@ -8,7 +8,7 @@
   "license": "GPL-3.0",
   "repository": "https://github.com/givepraise/praise-reports",
   "bugs": "https://github.com/givepraise/praise-reports/issues",
-  "categories": ["Basic reports", "Period reports"],
-  "keywords": ["praise", "period", "score", "summary"],
+  "categories": ["Basic reports"],
+  "keywords": ["praise", "score", "summary"],
   "configuration": {}
 }

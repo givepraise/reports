@@ -8,7 +8,28 @@
   "license": "GPL-3.0",
   "repository": "https://github.com/givepraise/praise-reports",
   "bugs": "https://github.com/givepraise/praise-reports/issues",
-  "categories": ["Token distributions", "Period reports"],
+  "categories": ["Rewards distribution"],
   "keywords": ["Safe", "ERC-20"],
-  "configuration": {}
+  "configuration": {
+    "ceiling": {
+      "type": "number",
+      "default": 10,
+      "description": "The maximum amount of tokens that can be distributed in a single period."
+    },
+    "cutoff": {
+      "type": "number",
+      "default": 100,
+      "description": "The point where the curve reaches the ceiling. If a period has more praise than the cutoff, the ceiling will be used as the period budget."
+    },
+    "tokenType": {
+      "type": "string",
+      "default": "erc20",
+      "description": "The type of token that is being transferred. One of erc20, nft or native. NFT Tokens can be either ERC721 or ERC1155."
+    },
+    "tokenAddress": {
+      "type": "string",
+      "default": "0x123...",
+      "description": "The address of the token contract. If the token type is native, this field is ignored."
+    }
+  }
 }
