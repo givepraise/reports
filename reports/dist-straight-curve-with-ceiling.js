@@ -1,5 +1,5 @@
-import BaseReport from "../base-report";
-export default class DistReport extends BaseReport {
+import BaseReport from "./base-report";
+export default class DistStraightCurveWithCeiling extends BaseReport {
   /**
    * Validate that any required config parameters are present.
    */

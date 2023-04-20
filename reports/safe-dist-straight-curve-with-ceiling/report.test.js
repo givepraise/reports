@@ -1,4 +1,4 @@
-import Report from "./safe.js";
+import Report from "./report.js";
 import { initDuckDb } from "../../src/duckdb.js";
 
 describe("dist-straight-curve-with-ceiling", () => {
