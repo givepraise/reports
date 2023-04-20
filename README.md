@@ -37,17 +37,15 @@ yarn test
 ### Report folder structure
 
 - Reports are stored in the `reports` folder.
-- Every subfolder in the `reports` folder is a report.
-- A report folder can contain more than one report version. Multiple reports in one folder should be different versions/flavours of the same report.
+- Every subfolder in the `reports` folder is **one** report.
 
 ```bash
 reports
 ├── my-report
+│   ├── manifest.json
+│   ├── README.md
 │   ├── report.js
 │   ├── report.test.js
-│   ├── report-version2.js
-│   ├── report-version2.test.js
-│   ├── README.md
 ```
 
 ### Report class
@@ -95,8 +93,6 @@ db.query(sql);
 ```
 
 ### Report manifest example
-
-````js
 
 Report settings are heavily inspired by VS Code's settings.
 See https://code.visualstudio.com/api/references/contribution-points#contributes.configuration

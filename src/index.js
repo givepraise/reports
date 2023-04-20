@@ -28,7 +28,7 @@ async function run() {
     const response = await report.run();
 
     console.log(`✅ Success!\n`);
-    console.log(`Returned rows: ${response.length}\n`);
+    console.log(`Returned rows: ${response.rows.length}\n`);
 
     console.log(`${JSON.stringify(response, null, 2)}\n`);
   } catch (e) {

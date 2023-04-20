@@ -1,7 +1,6 @@
 import { StaticModuleRecord } from "@endo/static-module-record";
 import { fileURLToPath } from "url";
 import fs from "fs";
-import { log } from "./report.js";
 import path from "path";
 
 const __filename = fileURLToPath(import.meta.url);
