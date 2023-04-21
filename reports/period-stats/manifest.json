@@ -6,8 +6,8 @@
   "author": "General Magic",
   "publisher": "general-magic",
   "license": "GPLv3",
-  "repository": "https://github.com/givepraise/praise-reports",
-  "bugs": "https://github.com/givepraise/praise-reports/issues",
+  "repository": "https://github.com/givepraise/reports",
+  "bugs": "https://github.com/givepraise/reports/issues",
   "categories": ["Basic reports"],
   "keywords": ["period", "stats", "summary"],
   "configuration": {}

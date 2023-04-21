@@ -106,8 +106,8 @@ const manifest = {
   author: "General Magic",
   publisher: "general-magic",
   license: "MIT",
-  repository: "https://github.com/givepraise/praise-reports",
-  bugs: "https://github.com/givepraise/praise-reports/issues",
+  repository: "https://github.com/givepraise/reports",
+  bugs: "https://github.com/givepraise/reports/issues",
   categories: ["Basic reports", "Praise receiver reports"],
   keywords: ["toplist"],
   configuration: {

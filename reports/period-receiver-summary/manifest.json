@@ -6,8 +6,8 @@
   "author": "Praise",
   "publisher": "praise",
   "license": "GPL-3.0",
-  "repository": "https://github.com/givepraise/praise-reports",
-  "bugs": "https://github.com/givepraise/praise-reports/issues",
+  "repository": "https://github.com/givepraise/reports",
+  "bugs": "https://github.com/givepraise/reports/issues",
   "categories": ["Basic reports"],
   "keywords": ["praise", "score", "summary"],
   "configuration": {}
