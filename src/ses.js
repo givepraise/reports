@@ -10,8 +10,7 @@ const __dirname = path.dirname(__filename);
  * Converts JSON to a JS object
  */
 function convertJSONToJSObject(json) {
-  const jsonString = JSON.stringify(json, null, 2);
-  const jsObjectString = jsonString
+  const jsObjectString = json
     .replace(/^\{/, "export default {")
     .replace(/\}$/, "};");
   return jsObjectString;
@@ -32,7 +31,7 @@ function importModule(moduleSpecifier) {
 
   // If it's a JSON file, convert it to a JS object
   const processedModuleText = moduleSpecifier.endsWith(".json")
-    ? convertJSONToJSObject(JSON.parse(moduleText))
+    ? convertJSONToJSObject(moduleText)
     : moduleText;
 
   return new StaticModuleRecord(processedModuleText, moduleSpecifier);
