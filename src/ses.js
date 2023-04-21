@@ -7,20 +7,35 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /**
+ * Converts JSON to a JS object
+ */
+function convertJSONToJSObject(json) {
+  const jsonString = JSON.stringify(json, null, 2);
+  const jsObjectString = jsonString
+    .replace(/^\{/, "export default {")
+    .replace(/\}$/, "};");
+  return jsObjectString;
+}
+
+/**
  * Imports with or without .js extension supported
  */
 function importModule(moduleSpecifier) {
-  // Add .js to end of module specifier if it doesn't already have it
-  if (!moduleSpecifier.endsWith(".js")) {
+  // Add .js to end of module specifier if it doesn't already have it (or .json)
+  if (!moduleSpecifier.endsWith(".js") && !moduleSpecifier.endsWith(".json")) {
     moduleSpecifier += ".js";
   }
 
-  const moduleText = fs.readFileSync(
-    path.resolve(__dirname, `../reports/${moduleSpecifier}`),
-    "utf8"
-  );
+  // Read file from disk
+  const modulePath = path.resolve(__dirname, `../reports/${moduleSpecifier}`);
+  const moduleText = fs.readFileSync(modulePath, "utf8");
 
-  return new StaticModuleRecord(moduleText, moduleSpecifier);
+  // If it's a JSON file, convert it to a JS object
+  const processedModuleText = moduleSpecifier.endsWith(".json")
+    ? convertJSONToJSObject(JSON.parse(moduleText))
+    : moduleText;
+
+  return new StaticModuleRecord(processedModuleText, moduleSpecifier);
 }
 
 /**

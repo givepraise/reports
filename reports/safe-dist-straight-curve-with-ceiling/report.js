@@ -1,6 +1,9 @@
 import DistStraightCurveWithCeiling from "../dist-straight-curve-with-ceiling";
+import Manifest from "./manifest.json";
 
 export default class Report extends DistStraightCurveWithCeiling {
+  manifest = Manifest;
+
   constructor(config, db) {
     super(config, db);
     if (!config.tokenType || !config.tokenAddress) {

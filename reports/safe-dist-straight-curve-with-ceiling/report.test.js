@@ -22,7 +22,9 @@ describe("dist-straight-curve-with-ceiling", () => {
     report = new Report(config, db);
     expect(report).toBeDefined();
     expect(report.manifest).toBeDefined();
-    expect(report.manifest.name).toEqual("dist-straight-curve-with-ceiling");
+    expect(report.manifest.name).toEqual(
+      "safe-dist-straight-curve-with-ceiling"
+    );
   });
   test("run should succeed and return expected results", async () => {
     const result = await report.run();
