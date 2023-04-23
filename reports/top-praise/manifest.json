@@ -1,0 +1,14 @@
+{
+  "name": "top-praise",
+  "displayName": "Top 100 Praise",
+  "description": "This report shows the top 100 praise in the seleced period.",
+  "version": "0.0.1",
+  "author": "Praise",
+  "publisher": "praise",
+  "license": "GPL-3.0",
+  "repository": "https://github.com/givepraise/reports",
+  "bugs": "https://github.com/givepraise/reports/issues",
+  "categories": ["Basic reports"],
+  "keywords": ["praise", "score", "summary"],
+  "configuration": {}
+}
