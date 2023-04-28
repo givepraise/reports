@@ -8,7 +8,7 @@
   "license": "GPL-3.0",
   "repository": "https://github.com/givepraise/reports",
   "bugs": "https://github.com/givepraise/reports/issues",
-  "categories": ["Rewards distribution"],
+  "categories": ["rewards"],
   "keywords": ["Safe", "ERC-20"],
   "configuration": {
     "ceiling": {
