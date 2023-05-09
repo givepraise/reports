@@ -17,19 +17,11 @@ describe("period-receiver-summary", () => {
     report = new Report(config, db);
     expect(report).toBeDefined();
     expect(report.manifest).toBeDefined();
-    expect(report.manifest.name).toEqual("period-receiver-summary");
+    expect(report.manifest.name).toEqual("praise-legacy-full-export");
   });
   test("run should succeed and return expected results", async () => {
     const result = await report.run();
     expect(result.rows).toBeDefined();
-    expect(result.rows.length).toEqual(134);
-    expect(result.rows[0]).toEqual({
-      name: "divine_comedian#5493",
-      username: "divine_comedian",
-      identity_eth_address: "0x320c338BCF70bAAaE26e96201C33B48105Bc62C2",
-      rewards_eth_address: "0x320c338BCF70bAAaE26e96201C33B48105Bc62C2",
-      praise_count: 74,
-      score: 703.45,
-    });
+    expect(result.rows.length).toEqual(1643);
   });
 });

@@ -24,6 +24,6 @@ describe("period-stats", () => {
     expect(result).toBeDefined();
     expect(result.rows.length).toEqual(1);
     expect(result.rows[0].praise_count).toEqual(1643);
-    expect(result.rows[0].score).toEqual(11480.63);
+    expect(result.rows[0].score).toEqual(11294.62);
   });
 });

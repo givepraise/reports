@@ -1,0 +1,14 @@
+{
+  "name": "praise-legacy-full-export",
+  "displayName": "Praise Legacy Full Export",
+  "description": "Exports praise data in the legacy format interpreted by the RAD analytics dashboard.",
+  "version": "0.0.1",
+  "author": "Praise",
+  "publisher": "praise",
+  "license": "GPL-3.0",
+  "repository": "https://github.com/givepraise/reports",
+  "bugs": "https://github.com/givepraise/reports/issues",
+  "categories": [],
+  "keywords": ["praise", "score", "summary"],
+  "configuration": {}
+}

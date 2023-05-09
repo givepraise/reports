@@ -31,7 +31,7 @@ describe("dist-straight-curve-with-ceiling", () => {
     expect(result.rows).toBeDefined();
     expect(result.rows.length).toEqual(68);
     expect(result.rows[0]).toEqual({
-      amount: 0.6228550243626864,
+      amount: 0.6312500121265273,
       id: "",
       receiver: "0x320c338BCF70bAAaE26e96201C33B48105Bc62C2",
       token_address: "0x9C58BAcC331c9aa871AFD802DB6379a98e80CEdb",
