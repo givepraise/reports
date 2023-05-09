@@ -17,15 +17,12 @@ describe("period-receiver-summary", () => {
     report = new Report(config, db);
     expect(report).toBeDefined();
     expect(report.manifest).toBeDefined();
-    expect(report.manifest.name).toEqual("top-praise");
+    expect(report.manifest.name).toEqual("top-givers");
   });
   test("run should succeed and return expected results", async () => {
     const result = await report.run();
     expect(result.rows).toBeDefined();
-    expect(result.rows.length).toEqual(100);
-    expect(result.rows[0].score).toEqual(82.5);
-    expect(result.rows[0].reason).toEqual(
-      "for the success of Token Engineering Academy"
-    );
+    expect(result.rows.length).toEqual(42);
+    expect(result.rows[0].giver_users_username).toEqual("iviangita");
   });
 });

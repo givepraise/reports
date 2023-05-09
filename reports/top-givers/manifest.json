@@ -1,0 +1,14 @@
+{
+  "name": "top-givers",
+  "displayName": "Top Praise Givers",
+  "description": "This report shows the top praise givers based on the total praise score given in the selected period.",
+  "version": "0.0.1",
+  "author": "Praise",
+  "publisher": "praise",
+  "license": "GPL-3.0",
+  "repository": "https://github.com/givepraise/reports",
+  "bugs": "https://github.com/givepraise/reports/issues",
+  "categories": [],
+  "keywords": ["praise", "givers", "score", "summary"],
+  "configuration": {}
+}

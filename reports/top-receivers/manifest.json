@@ -1,0 +1,14 @@
+{
+  "name": "top-receivers",
+  "displayName": "Top Praise Receivers",
+  "description": "This report shows the top praise receivers based on the total praise score received in the selected period.",
+  "version": "0.0.1",
+  "author": "Praise",
+  "publisher": "praise",
+  "license": "GPL-3.0",
+  "repository": "https://github.com/givepraise/reports",
+  "bugs": "https://github.com/givepraise/reports/issues",
+  "categories": [],
+  "keywords": ["praise", "receivers", "score", "summary"],
+  "configuration": {}
+}
