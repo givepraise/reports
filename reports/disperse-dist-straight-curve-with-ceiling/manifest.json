@@ -1,0 +1,25 @@
+{
+  "name": "disperse-dist-straight-curve-with-ceiling",
+  "displayName": "Dispers: Straight Curve with Ceiling",
+  "description": "Straight Curve with Ceiling - For Disperse",
+  "version": "0.0.1",
+  "author": "Praise",
+  "publisher": "praise",
+  "license": "GPL-3.0",
+  "repository": "https://github.com/givepraise/reports",
+  "bugs": "https://github.com/givepraise/reports/issues",
+  "categories": ["rewards"],
+  "keywords": ["Disperse", "ERC-20", "ETH"],
+  "configuration": {
+    "ceiling": {
+      "type": "number",
+      "default": 10,
+      "description": "The maximum amount of tokens that can be distributed in a single period."
+    },
+    "cutoff": {
+      "type": "number",
+      "default": 100,
+      "description": "The point where the curve reaches the ceiling. If a period has more praise than the cutoff, the ceiling will be used as the period budget."
+    }
+  }
+}
