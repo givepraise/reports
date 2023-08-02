@@ -20,7 +20,7 @@ export default class Report extends BaseReport {
         ), combined_data AS (
         SELECT 
           praises._id as id,
-          praises.createdAt as date,
+          strftime('%Y-%m-%dT%H:%M:%S.%fZ', praises.createdAt) as date,
           rac.name as to_user_account,
           rac._id as to_user_account_id,
           ru.identityEthAddress as to_eth_address,
