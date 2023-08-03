@@ -30,16 +30,6 @@ export default class Report extends BaseReport {
 
     const rowsReceivers = await this.db.query(sqlReceivers);
 
-    // Rank and map receivers data
-    const rankedRowsReceivers = rowsReceivers.map((row, index) => ({
-      useraccounts_name: row.useraccounts_name,
-      users_identityEthAddress: row.users_identityEthAddress,
-      total_received_praise_score: row.total_received_praise_score,
-      top_10_receiver: index < 10,
-      top_50_receiver: index < 50,
-      top_100_receiver: index < 100,
-    }));
-
     // SQL Query for given scores
     const sqlGivers = `
       SELECT 
@@ -56,46 +46,42 @@ export default class Report extends BaseReport {
 
     const rowsGivers = await this.db.query(sqlGivers);
 
-    // Rank and map givers data
-    const rankedRowsGivers = rowsGivers.map((row, index) => ({
-      useraccounts_name: row.useraccounts_name,
-      users_identityEthAddress: row.users_identityEthAddress,
-      total_given_praise_score: row.total_given_praise_score,
-      top_10_giver: index < 10,
-      top_50_giver: index < 50,
-      top_100_giver: index < 100,
-    }));
+    // Prepare unique users from both givers and receivers
+    const users = new Map();
 
-    // Merge givers and receivers data, combining results by useraccounts_name
-    const mergedDataset = [...rankedRowsReceivers, ...rankedRowsGivers].reduce(
-      (acc, row) => {
-        const { useraccounts_name, users_identityEthAddress, ...rest } = row;
+    rowsReceivers.forEach((row, index) => {
+      users.set(row.useraccounts_name, {
+        useraccounts_name: row.useraccounts_name,
+        users_identityEthAddress: row.users_identityEthAddress,
+        total_received_praise_score: row.total_received_praise_score ?? 0,
+        top_10_receiver: index < 10,
+        top_50_receiver: index < 50,
+        top_100_receiver: index < 100,
+        total_given_praise_score: 0,
+        top_10_giver: false,
+        top_50_giver: false,
+        top_100_giver: false,
+      });
+    });
 
-        // If this user is not yet in the merged data, add them with current row's data
-        if (!acc[useraccounts_name]) {
-          acc[useraccounts_name] = {
-            useraccounts_name,
-            users_identityEthAddress,
-            ...rest,
-          };
-        } else {
-          // Otherwise, update existing user's data with current row's data
-          acc[useraccounts_name] = {
-            ...acc[useraccounts_name],
-            ...Object.fromEntries(
-              Object.entries(rest).map(([key, value]) => [
-                key,
-                acc[useraccounts_name][key] ?? value,
-              ])
-            ),
-          };
-        }
+    rowsGivers.forEach((row, index) => {
+      const existingUser = users.get(row.useraccounts_name) || {
+        useraccounts_name: row.useraccounts_name,
+        users_identityEthAddress: row.users_identityEthAddress,
+        total_received_praise_score: 0,
+        top_10_receiver: false,
+        top_50_receiver: false,
+        top_100_receiver: false,
+      };
+      users.set(row.useraccounts_name, {
+        ...existingUser,
+        total_given_praise_score: row.total_given_praise_score ?? 0,
+        top_10_giver: index < 10,
+        top_50_giver: index < 50,
+        top_100_giver: index < 100,
+      });
+    });
 
-        return acc;
-      },
-      {}
-    );
-
-    return this.finish(Object.values(mergedDataset)); // Convert object to array and finish the report
+    return this.finish([...users.values()]); // Convert object to array and finish the report
   }
 }
