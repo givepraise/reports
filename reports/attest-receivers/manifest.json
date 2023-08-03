@@ -1,0 +1,14 @@
+{
+  "name": "attest-receivers",
+  "displayName": "Receiver total score",
+  "description": "This report shows all period receivers and the total score they received for the period.",
+  "version": "0.0.1",
+  "author": "Praise",
+  "publisher": "praise",
+  "license": "GPL-3.0",
+  "repository": "https://github.com/givepraise/reports",
+  "bugs": "https://github.com/givepraise/reports/issues",
+  "categories": ["attestations"],
+  "keywords": ["praise", "receivers", "score", "summary"],
+  "configuration": {}
+}
