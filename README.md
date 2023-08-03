@@ -18,11 +18,11 @@ node src/index.js <reportName> <config>
 Examples:
 
 ```bash
-node src/index.js period-stats/report '{"startDate": "2021-11-01", "endDate": "2021-11-30"}'
+node src/index.js period-stats/report '{"startDate": "2021-09-30", "endDate": "2021-10-31"}'
 ```
 
 ```bash
-node src/index.js period-receiver-summary/report '{"startDate": "2021-11-01", "endDate": "2021-11-07"}'
+node src/index.js period-receiver-summary/report '{"startDate": "2021-09-30", "endDate": "2021-10-31"}'
 ```
 
 ## Test all reports
@@ -157,7 +157,7 @@ const manifest = {
     },
   },
 };
-````
+```
 
 ### Database schema
 

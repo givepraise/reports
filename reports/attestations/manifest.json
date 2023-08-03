@@ -1,7 +1,7 @@
 {
-  "name": "attest-receivers",
-  "displayName": "Receiver total score",
-  "description": "This report shows all period receivers and the total score they received for the period.",
+  "name": "attestations",
+  "displayName": "Attestation data report",
+  "description": "Report data include total and top 10/50/100 given and recived praise.",
   "version": "0.0.1",
   "author": "Praise",
   "publisher": "praise",
