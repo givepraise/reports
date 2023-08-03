@@ -30,7 +30,7 @@ async function run() {
     console.log(`✅ Success!\n`);
     console.log(`Returned rows: ${response.rows.length}\n`);
 
-    console.log(`${JSON.stringify(response.rows.slice(0, 10), null, 2)}\n`);
+    console.log(`${JSON.stringify(response.rows, null, 2)}\n`);
   } catch (e) {
     console.log("Error generating report:");
     console.log(e);
