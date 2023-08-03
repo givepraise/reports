@@ -24,6 +24,14 @@ export default class Report extends BaseReport {
     ;`;
 
     const rows = await this.db.query(sql);
-    return this.finish(rows);
+
+    const rankedRows = rows.map((row, index) => ({
+      ...row,
+      top_10_receiver: index < 10,
+      top_50_receiver: index < 50,
+      top_100_receiver: index < 100,
+    }));
+
+    return this.finish(rankedRows);
   }
 }
