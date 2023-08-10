@@ -41,8 +41,8 @@ function importModule(moduleSpecifier) {
  * Resolver for SES Compartment, currently only supports relative imports
  */
 function resolveModule(moduleSpecifier, moduleReferrer) {
-  const folderName = moduleReferrer.split("/")[0];
-  return `${folderName}/${moduleSpecifier}`;
+  const moduleReferrerFolder = moduleReferrer.replace(/\/[^\/]*$/, "");
+  return `${moduleReferrerFolder}/${moduleSpecifier}`;
 }
 
 export function createCompartment() {
