@@ -33,8 +33,8 @@
     },
     "manualFilterAddress": {
       "type": "array",
-      items: {
-        type: "string",
+      "items": {
+        "type": "string",
       },
       "default": ["0x9C58BAcC331c9aa871AFD802DB6379a98e80CEdb"],
       "description": "Addresses to be filtered out of the receiver data. Defaults to the address of no_planet_b."
