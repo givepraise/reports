@@ -13,12 +13,12 @@
   "configuration": {
     "ceiling": {
       "type": "number",
-      "default": 10,
+      "default": 9.25,
       "description": "The maximum amount of tokens that can be distributed in a single period."
     },
     "cutoff": {
       "type": "number",
-      "default": 100,
+      "default": 200,
       "description": "The point where the curve reaches the ceiling. If a period has more praise than the cutoff, the ceiling will be used as the period budget."
     },
     "tokenType": {
@@ -28,8 +28,16 @@
     },
     "tokenAddress": {
       "type": "string",
-      "default": "0x123...",
+      "default": "0x9C58BAcC331c9aa871AFD802DB6379a98e80CEdb",
       "description": "The address of the token contract. If the token type is native, this field is ignored."
-    }
+    },
+    "manualFilterAddress": {
+      "type": "array",
+      items: {
+        type: "string",
+      },
+      "default": ["0x9C58BAcC331c9aa871AFD802DB6379a98e80CEdb"],
+      "description": "Addresses to be filtered out of the receiver data. Defaults to the address of no_planet_b."
+    } 
   }
 }
