@@ -94,9 +94,7 @@ export default class Report extends BaseReport {
         deletedCount++;
       }
     });
-    this.log(
-      `---\nDeleted ${deletedCount} users without identity eth addresses.`
-    );
+    this.log(`---\nDeleted ${deletedCount} users.`);
 
     return this.finish([...users.values()]); // Convert object to array and finish the report
   }
