@@ -82,6 +82,22 @@ export default class Report extends BaseReport {
       });
     });
 
+    // Filter users without users_identityEthAddress
+    this.log(
+      "\nFiltering users without identity eth addresses as they can't receive attestation."
+    );
+    let deletedCount = 0;
+    users.forEach((user, key) => {
+      if (!user.users_identityEthAddress) {
+        users.delete(key);
+        this.log(`- ${key}`);
+        deletedCount++;
+      }
+    });
+    this.log(
+      `---\nDeleted ${deletedCount} users without identity eth addresses.`
+    );
+
     return this.finish([...users.values()]); // Convert object to array and finish the report
   }
 }
