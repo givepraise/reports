@@ -84,7 +84,7 @@ export default class Report extends BaseReport {
 
     // Filter users without users_identityEthAddress
     this.log(
-      "\nFiltering users without identity eth addresses as they can't receive attestation."
+      "Filtering users without identity eth addresses as they can't receive attestation."
     );
     let deletedCount = 0;
     users.forEach((user, key) => {
