@@ -15,38 +15,36 @@ export default class Report extends BaseReport {
 
     // SQL Query for receiving scores
     const sqlReceivers = `
-    SELECT
-      ru.username AS users_username, 
-      rac.name AS useraccounts_name, 
-      ru.identityEthAddress AS users_identityEthAddress, 
-      FLOOR(SUM(praises.score)) AS total_received_praise_score,
-      MAX(CASE WHEN quantifications.quantifier IS NOT NULL THEN 1 ELSE 0 END) AS is_quantifier
-    FROM praises
-    LEFT JOIN useraccounts AS rac ON praises.receiver = rac._id
-    LEFT JOIN users AS ru ON rac.user = ru._id
-    LEFT JOIN quantifications ON quantifications.quantifier = ru._id
-    ${where}
-    GROUP BY ru.username, ru.identityEthAddress, rac.name
-    ORDER BY total_received_praise_score DESC
+      SELECT
+        ru.username AS users_username, 
+        rac.name AS useraccounts_name, 
+        ru.identityEthAddress AS users_identityEthAddress, 
+        FLOOR(SUM(praises.score)) AS total_received_praise_score,
+        CASE WHEN EXISTS (SELECT 1 FROM quantifications WHERE quantifications.quantifier = ru._id) THEN 1 ELSE 0 END AS is_quantifier
+      FROM praises
+      LEFT JOIN useraccounts AS rac ON praises.receiver = rac._id
+      LEFT JOIN users AS ru ON rac.user = ru._id
+      ${where}
+      GROUP BY ru._id, ru.username, ru.identityEthAddress, rac.name
+      ORDER BY total_received_praise_score DESC  
   `;
 
     const rowsReceivers = await this.db.query(sqlReceivers);
 
     // SQL Query for given scores
     const sqlGivers = `
-    SELECT 
-      gu.username AS users_username,
-      gac.name AS useraccounts_name, 
-      gu.identityEthAddress AS users_identityEthAddress, 
-      FLOOR(SUM(praises.score)) AS total_given_praise_score,
-      MAX(CASE WHEN quantifications.quantifier IS NOT NULL THEN 1 ELSE 0 END) AS is_quantifier
-    FROM praises
-    LEFT JOIN useraccounts AS gac ON praises.giver = gac._id
-    LEFT JOIN users AS gu ON gac.user = gu._id
-    LEFT JOIN quantifications ON quantifications.quantifier = gu._id
-    ${where}
-    GROUP BY gu.username, gu.identityEthAddress, gac.name
-    ORDER BY total_given_praise_score DESC
+      SELECT 
+        gu.username AS users_username,
+        gac.name AS useraccounts_name, 
+        gu.identityEthAddress AS users_identityEthAddress, 
+        FLOOR(SUM(praises.score)) AS total_given_praise_score,
+        CASE WHEN EXISTS (SELECT 1 FROM quantifications WHERE quantifications.quantifier = gu._id) THEN 1 ELSE 0 END AS is_quantifier
+      FROM praises
+      LEFT JOIN useraccounts AS gac ON praises.giver = gac._id
+      LEFT JOIN users AS gu ON gac.user = gu._id
+      ${where}
+      GROUP BY gu._id, gu.username, gu.identityEthAddress, gac.name
+      ORDER BY total_given_praise_score DESC  
   `;
 
     const rowsGivers = await this.db.query(sqlGivers);
